@@ -109,15 +109,25 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     required String title,
     required String description,
   }) {
+    final bool isFreshImage = image == Assets.freshImage;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 32),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Expanded(
-            child: Center(child: Image.asset(image, fit: BoxFit.contain)),
+          SizedBox(
+            height: 240,
+            width: double.infinity,
+            child: Padding(
+              padding: EdgeInsets.all(isFreshImage ? 20 : 0),
+              child: Image.asset(
+                image,
+                fit: BoxFit.contain,
+                filterQuality: FilterQuality.high,
+              ),
+            ),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 28),
           Text(
             title,
             textAlign: TextAlign.center,
